@@ -1,0 +1,1148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Shauryyan Kumar — Python Learner, BCA Student at CT Group of Institutions">
+<title>Shauryyan Kumar | Project Aether</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Schibsted+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f5fd;--surface:#fff;--ink:#1a1030;--muted:#5f5878;--line:#e3ddf3;
+  --accent:#6d28d9;--accent-ink:#fff;--accent-soft:#ece5fc;--pink:#c026d3;--ok:#1d7a46;
+  --f-display:"Schibsted Grotesk",system-ui,sans-serif;--f-body:"IBM Plex Sans",system-ui,sans-serif;--f-mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#07050f;--surface:#130f26;--ink:#f1eefc;--muted:#a59fc0;--line:#2a2150;--accent:#a78bfa;--accent-ink:#0d0a1c;--accent-soft:#211a3a;--pink:#e879f9;--ok:#34d399;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#07050f;--surface:#130f26;--ink:#f1eefc;--muted:#a59fc0;--line:#2a2150;--accent:#a78bfa;--accent-ink:#0d0a1c;--accent-soft:#211a3a;--pink:#e879f9;--ok:#34d399;color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--bg);color:var(--ink);font:400 1rem/1.65 var(--f-body);padding-inline:max(16px,4vw);padding-block:0 4rem;margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin-inline:auto}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.1;margin:0}
+.eyebrow{font:500 .78rem/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.7rem}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
+
+#boot{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;font-family:var(--f-mono);transition:opacity .5s;animation:bootOut .5s 4s forwards}
+#boot.done{opacity:0;pointer-events:none}
+@keyframes bootOut{to{opacity:0;visibility:hidden}}
+#boot b{color:var(--accent);letter-spacing:.35em;font-size:1.1rem}
+#boot .bar{width:240px;height:3px;border-radius:99px;background:var(--line);overflow:hidden}
+#boot .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--pink))}
+#boot small{color:var(--muted);letter-spacing:.15em;font-size:.72rem;min-height:1em}
+#prog{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--pink));z-index:50}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);margin-inline:calc(max(16px,4vw)*-1);padding-inline:max(16px,4vw)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.8rem;flex-wrap:wrap}
+.brand{font:700 .95rem var(--f-mono);letter-spacing:.12em;text-decoration:none;color:var(--accent);display:flex;align-items:center;gap:.6rem}
+.brand::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);animation:ping 2s infinite}
+@keyframes ping{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 70%,transparent)}50%{box-shadow:0 0 0 7px transparent}}
+.links{display:flex;gap:1.1rem;flex-wrap:wrap;font-size:.88rem}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+
+.hero{display:grid;grid-template-columns:1.25fr 1fr;gap:2.5rem;align-items:center;padding-block:4rem 3.5rem}
+.hero>*{min-width:0}
+.status{display:inline-flex;align-items:center;gap:.5rem;font:500 .82rem var(--f-mono);color:var(--ok);background:var(--surface);border:1px solid var(--line);padding:.35rem .7rem;border-radius:999px}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:ping 1.6s infinite}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);font-weight:800;letter-spacing:-.03em;margin-block:1.1rem .6rem;background:linear-gradient(100deg,var(--ink) 30%,var(--accent) 70%,var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font-size:1.25rem;color:var(--muted);margin:0 0 1rem;min-height:1.8rem}
+#typed::after{content:"|";color:var(--accent);animation:blink 1s steps(2) infinite;margin-left:2px}
+@keyframes blink{50%{opacity:0}}
+.pitch{max-width:34rem;margin:0 0 1.8rem}
+.cta{display:flex;gap:.7rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.1rem;border-radius:8px;font:600 .95rem var(--f-body);text-decoration:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:linear-gradient(100deg,var(--accent),var(--pink));color:var(--accent-ink);border-color:transparent}
+.stats{display:flex;gap:2rem;flex-wrap:wrap;margin-top:2rem}
+.stats b{display:block;font:800 1.6rem var(--f-display)}
+.stats span{font-size:.85rem;color:var(--muted)}
+.readme{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;font:400 .84rem var(--f-mono);box-shadow:0 0 60px color-mix(in srgb,var(--accent) 18%,transparent);animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-8px)}}
+.readme header{display:flex;justify-content:space-between;padding:.6rem 1rem;border-bottom:1px solid var(--line);color:var(--muted);font-size:.78rem}
+.readme dl{margin:0;padding:.4rem 1rem 1rem;display:grid;grid-template-columns:auto 1fr;gap:.7rem 1rem}
+.readme dt{color:var(--muted)}
+.readme dd{margin:0;overflow-wrap:anywhere}
+.readme dd b{color:var(--accent);font-weight:500}
+
+section{padding-block:3rem;border-top:1px solid var(--line)}
+section>h2{font-size:clamp(1.6rem,3.4vw,2.2rem);margin-block:.7rem 1.8rem;letter-spacing:-.02em}
+.grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.grid>*{min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.4rem;display:flex;flex-direction:column;gap:.8rem;transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
+.card h3{font-size:1.15rem}
+.card p{margin:0;color:var(--muted)}
+.ico{width:42px;height:42px;border-radius:10px;background:var(--accent-soft);display:grid;place-items:center;font-size:1.3rem;flex:none}
+.tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:auto}
+.tag{font:500 .75rem var(--f-mono);padding:.2rem .55rem;border-radius:5px;background:var(--accent-soft);color:var(--accent)}
+.link{font-weight:600;color:var(--accent);text-decoration:none}
+.link:hover{text-decoration:underline}
+.meta{font:500 .75rem var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.bar{height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--pink));transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.about{display:grid;gap:2rem;grid-template-columns:1.3fr 1fr}
+.about>*{min-width:0}
+.about p{margin:0 0 1rem;max-width:40rem}
+.acards{display:grid;gap:.9rem;align-content:start}
+.acard{display:flex;gap:.9rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem}
+.acard h3{font-size:1rem;margin-bottom:.2rem}
+.acard p{margin:0;font-size:.9rem;color:var(--muted)}
+
+.tl{position:relative;display:grid;gap:1.2rem;padding-left:1.8rem}
+.tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--accent),var(--pink));opacity:.5}
+.tl-item{position:relative}
+.tl-item::before{content:"";position:absolute;left:-1.8rem;top:.35rem;width:14px;height:14px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.tl-item.now::before{background:var(--accent);animation:ping 2s infinite}
+.tl-year{font:500 .78rem var(--f-mono);color:var(--accent);margin-bottom:.4rem;letter-spacing:.08em}
+.tl-card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.1rem 1.3rem}
+.tl-card h3{font-size:1.05rem;margin-bottom:.3rem}
+.tl-card span{display:block;color:var(--muted);font-size:.92rem}
+.tl-card .marks{font:400 .8rem var(--f-mono);margin-top:.4rem}
+.badge{display:inline-block;font:500 .75rem var(--f-mono);color:var(--accent);background:var(--accent-soft);padding:.2rem .55rem;border-radius:5px;margin-top:.5rem;font-style:normal}
+
+.cert{flex-direction:row;gap:1rem}
+.cert h3{font-size:1.02rem;margin-bottom:.3rem}
+.cert .meta{text-transform:none;letter-spacing:0}
+.scores{display:flex;gap:.4rem;flex-wrap:wrap;margin-block:.5rem}
+.scores span{font:500 .72rem var(--f-mono);color:var(--ok);border:1px solid var(--line);border-radius:5px;padding:.15rem .5rem}
+.lang{display:flex;justify-content:space-between;font:400 .8rem var(--f-mono);margin-bottom:.4rem}
+
+.term{background:#0d0a1c;color:#e9e4ff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font:400 .85rem/1.7 var(--f-mono)}
+.term-h{display:flex;align-items:center;gap:.4rem;padding:.6rem 1rem;border-bottom:1px solid #2a2150;color:#a59fc0;font-size:.78rem}
+.term-h i{width:10px;height:10px;border-radius:50%;background:#f87171}
+.term-h i:nth-child(2){background:#fbbf24}.term-h i:nth-child(3){background:#34d399}
+.term-h span{margin-left:.5rem}
+#out{height:260px;overflow:auto;padding:.8rem 1rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.term-in{display:flex;gap:.6rem;padding:.6rem 1rem;border-top:1px solid #2a2150}
+.term-in span,.g{color:#34d399}.c{color:#a78bfa}.m{color:#a59fc0}.r{color:#f87171}
+#cmd{flex:1;min-width:0;background:none;border:0;outline:0;color:inherit;font:inherit}
+.hint{color:var(--muted);font-size:.85rem;margin-top:.8rem}
+.hint code{font-family:var(--f-mono);color:var(--accent)}
+
+.contact{display:grid;gap:2rem;grid-template-columns:1fr 1.1fr}
+.contact>*{min-width:0}
+.contact p{margin:.6rem 0 1rem;max-width:30rem}
+.mail{font:500 1rem var(--f-mono);user-select:all;overflow-wrap:anywhere}
+form{display:grid;gap:.9rem}
+label{font:500 .72rem var(--f-mono);letter-spacing:.1em;color:var(--muted);display:grid;gap:.35rem}
+input,textarea{font:400 1rem var(--f-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:.65rem .8rem;width:100%}
+textarea{min-height:110px;resize:vertical}
+footer{padding-top:2rem;color:var(--muted);font-size:.85rem}
+
+.fade{opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.fade.in{opacity:1;transform:none}
+
+@media (max-width:760px){
+  .about,.contact{grid-template-columns:1fr}
+  .hero{grid-template-columns:1fr;padding-block:2.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*{animation:none!important;transition:none!important}
+  .fade{opacity:1;transform:none}
+}
+
+#stars{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 60% 50% at 8% 5%,color-mix(in srgb,var(--accent) 22%,transparent),transparent 70%),radial-gradient(ellipse 50% 45% at 95% 90%,color-mix(in srgb,var(--pink) 16%,transparent),transparent 70%);animation:neb 18s ease-in-out infinite alternate}
+@keyframes neb{to{opacity:.6;transform:scale(1.08)}}
+.hero h1{background-size:200% 100%;animation:shine 7s ease-in-out infinite alternate}
+@keyframes shine{from{background-position:0 0}to{background-position:100% 0}}
+.btn{transition:transform .2s,box-shadow .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px -8px var(--accent)}
+.ticker{display:flex;justify-content:space-between;align-items:center;gap:1rem;font:500 .72rem var(--f-mono);letter-spacing:.2em;color:var(--muted);padding-block:.5rem 2.5rem;flex-wrap:wrap}
+.ticker .mid{display:flex;align-items:center;gap:1rem}
+.ticker .mid::before,.ticker .mid::after{content:"";height:1px;width:80px;background:linear-gradient(90deg,transparent,var(--accent))}
+.ticker .mid::after{background:linear-gradient(90deg,var(--accent),transparent)}
+.card,.acard,.tl-card{position:relative;overflow:hidden}
+.card::after,.acard::after,.tl-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--accent) 20%,transparent),transparent 70%)}
+.card:hover::after,.acard:hover::after,.tl-card:hover::after{opacity:1}
+.desk{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.hint{color:var(--muted);font-size:.85rem}
+
+/* ---- like button (nav) ---- */
+.like{display:inline-flex;align-items:center;gap:.5rem}
+.like-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem .8rem;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 .85rem var(--f-body);cursor:pointer;transition:border-color .2s,color .2s,transform .2s,opacity .2s}
+.like-btn:hover{border-color:var(--pink);transform:translateY(-1px)}
+.like-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:fill .25s,stroke .25s}
+.like-btn.liked{border-color:var(--pink);color:var(--pink)}
+.like-btn.liked svg{fill:var(--pink);stroke:var(--pink)}
+.like-btn.busy{opacity:.65;cursor:progress}
+.like-btn.pop{animation:likeRing .6s ease-out}
+.like-btn.pop svg{animation:heartPop .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes heartPop{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+@keyframes likeRing{from{box-shadow:0 0 0 0 color-mix(in srgb,var(--pink) 55%,transparent)}to{box-shadow:0 0 0 12px transparent}}
+.like-count{font:500 .8rem var(--f-mono);font-variant-numeric:tabular-nums;min-width:1ch;text-align:center}
+.like-scope{font:500 .62rem var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.like-note{position:absolute;left:max(16px,env(safe-area-inset-left,0px));bottom:100%;margin-bottom:10px;width:fit-content;max-width:min(420px,calc(100vw - 32px));background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:.6rem .8rem;font-size:.85rem;line-height:1.4;color:var(--ink);box-shadow:0 14px 40px -14px color-mix(in srgb,var(--accent) 50%,transparent);opacity:0;transform:translateY(6px);pointer-events:none;transition:opacity .25s,transform .25s}
+.like-note.show{opacity:1;transform:none}
+.like-note.error{border-color:#f87171}
+
+/* ---- consent banner + privacy notice ---- */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:0 max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));pointer-events:none}
+.consent{pointer-events:auto;max-width:560px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1rem 1.1rem;box-shadow:0 18px 50px -14px color-mix(in srgb,var(--accent) 45%,transparent);display:grid;gap:.75rem}
+.consent[hidden]{display:none}
+.consent p{margin:0;font-size:.88rem;color:var(--muted)}
+.consent .cta .btn{padding:.5rem .9rem;font-size:.88rem}
+.consent a{color:var(--accent)}
+footer p{margin:0}
+.privacy{margin-top:1.4rem;border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:.2rem 1.1rem}
+.privacy summary{cursor:pointer;padding:.7rem 0;font:600 .9rem var(--f-body);color:var(--ink)}
+.privacy ul{margin:.3rem 0 1rem;padding-left:1.2rem;display:grid;gap:.45rem}
+.privacy p{margin:.4rem 0}
+.privacy-status{font:500 .8rem var(--f-mono);color:var(--accent)}
+.privacy .btn{margin:.4rem 0 1rem;padding:.45rem .9rem;font-size:.85rem}
+.privacy .btn[hidden]{display:none}
+.nav-right{display:flex;align-items:center;gap:.8rem;margin-left:auto}
+.menu-btn,.drawer-close{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:50%;cursor:pointer;display:grid;place-items:center;transition:border-color .2s,color .2s,transform .2s}
+.menu-btn{width:42px;height:42px}
+.drawer-close{width:36px;height:36px;font-size:1.3rem;line-height:1}
+.menu-btn:hover,.drawer-close:hover{border-color:var(--accent);color:var(--accent)}
+.menu-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.drawer-scrim{position:fixed;inset:0;z-index:70;background:rgba(7,5,15,.45);backdrop-filter:blur(2px);opacity:0;visibility:hidden;transition:opacity .3s,visibility 0s .3s}
+.drawer-scrim.open{opacity:1;visibility:visible;transition:opacity .3s}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:71;width:min(320px,86vw);display:flex;flex-direction:column;gap:1.2rem;padding:calc(1rem + env(safe-area-inset-top,0px)) calc(1.2rem + env(safe-area-inset-right,0px)) calc(1.2rem + env(safe-area-inset-bottom,0px)) 1.4rem;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(14px);border-left:1px solid var(--line);box-shadow:-24px 0 60px -20px color-mix(in srgb,var(--accent) 40%,transparent);transform:translateX(105%);visibility:hidden;transition:transform .38s cubic-bezier(.22,.8,.3,1),visibility 0s .38s}
+.drawer.open{transform:none;visibility:visible;transition:transform .38s cubic-bezier(.22,.8,.3,1)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between}
+.drawer-title{font:500 .72rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.drawer-links{display:grid;gap:.2rem;overflow-y:auto}
+.drawer-links a{display:block;padding:.8rem .9rem;border-radius:10px;text-decoration:none;color:var(--ink);font:600 1.05rem var(--f-display);transition:background .2s,color .2s,transform .2s}
+.drawer-links a:hover,.drawer-links a:focus-visible{background:var(--accent-soft);color:var(--accent);transform:translateX(3px)}
+.drawer-foot{margin:auto 0 0;font-size:.82rem;color:var(--muted)}
+.foot-note{max-width:38rem}
+.foot-note a{color:var(--accent)}
+@media (max-width:520px){.like{flex-direction:column;align-items:flex-end;gap:.1rem}.like-scope{font-size:.56rem}}
+.desk .meta{text-transform:none;letter-spacing:0;overflow-wrap:anywhere} /* certificate IDs are case-sensitive */
+.desk .card h3{font-size:1.05rem}
+.desk .scores{margin-block:.1rem}
+</style>
+</head>
+<body>
+
+<div id="boot"><b>PROJECT AETHER</b><div class="bar"><i id="bfill"></i></div><small id="btext">INITIALIZING...</small></div>
+<div id="prog"></div>
+<canvas id="stars" aria-hidden="true"></canvas>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top">AETHER.SYS</a>
+  <div class="nav-right">
+  <div class="like" id="like">
+    <button class="like-btn" id="like-btn" type="button" aria-pressed="false" aria-describedby="like-note">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span id="like-label">Like</span>
+      <span class="like-count" id="like-count">–</span>
+    </button>
+    <span class="like-scope" id="like-scope"></span>
+  </div>
+  <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+  </button>
+  </div>
+</div></nav>
+<div class="drawer-scrim" id="drawer-scrim"></div>
+<aside class="drawer" id="drawer" aria-label="Site menu" aria-hidden="true">
+  <div class="drawer-head"><span class="drawer-title">Menu</span><button class="drawer-close" id="drawer-close" type="button" aria-label="Close menu">&times;</button></div>
+  <div class="drawer-links" id="drawer-links"><a href="#about">About</a><a href="#skills">Skills</a><a href="#journey">Journey</a><a href="#projects">Projects</a><a href="#certs">Certs</a><a href="#github">GitHub</a><a href="#terminal">Terminal</a><a href="#contact">Contact</a></div>
+  <p class="drawer-foot">Python learner, BCA student, building toward cybersecurity.</p>
+</aside>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <div>
+      <span class="status"><i></i>SYSTEM ONLINE · BCA · INDIA</span>
+      <h1>Shauryyan Kumar</h1>
+      <p class="role"><span id="typed">Python Learner</span></p>
+      <p class="pitch">BCA student passionate about <b>Python</b>. Building real projects and working toward cybersecurity as a serious future goal.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">⚡ View Projects</a>
+        <a class="btn" href="#contact">✉ Hire Me</a>
+        <a class="btn" href="https://github.com/mshaurya878" target="_blank" rel="noopener" data-track-link="github" data-track-label="hero_github">⎘ GitHub</a>
+      </div>
+      <div class="stats">
+        <div><b>9</b><span>Certificates</span></div>
+        <div><b>Python</b><span>Primary Focus</span></div>
+        <div><b>100%</b><span>Dedication</span></div>
+      </div>
+    </div>
+    <div class="readme" aria-label="Profile summary">
+      <header><span>profile.md</span><span>Jalandhar, Punjab</span></header>
+      <dl>
+        <dt>studying</dt><dd>BCA, CT Group of Institutions, Shahpur, Jalandhar</dd>
+        <dt>language</dt><dd><b>Python</b></dd>
+        <dt>built</dt><dd>Python automation scripts</dd>
+        <dt>program</dt><dd>Kushal Yuva Program (KYP)</dd>
+        <dt>certified</dt><dd>GUVI HCL, Nasscom, thingQbator</dd>
+        <dt>future goal</dt><dd>Cybersecurity, ethical hacking</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="ticker" aria-hidden="true"><span class="mid">BUILDING WITH PURPOSE</span><span>PYTHON · WEB · SECURITY</span></div>
+
+  <section id="about" data-track-section="about">
+    <div class="eyebrow">System Profile</div>
+    <h2>About Me</h2>
+    <div class="about fade">
+      <div>
+        <p>I'm <b>Shauryyan Kumar</b>, a BCA student at <b>CT Group of Institutions, Shahpur, Jalandhar</b>, passionate about programming and building things with code.</p>
+        <p>I work primarily with <b>Python</b>. I've completed the <b>Kushal Yuva Program (KYP)</b> and earned certifications from GUVI HCL in Python and web development.</p>
+        <p>Cybersecurity is something I'm genuinely interested in and plan to learn seriously in the future. Right now I'm focused on strengthening my programming fundamentals and building real projects.</p>
+        <p>Find me on <a href="https://github.com/mshaurya878" target="_blank" rel="noopener" style="color:var(--accent)" data-track-link="github" data-track-label="about_github">GitHub</a> or drop a mail. Always open to connect.</p>
+      </div>
+      <div class="acards">
+        <div class="acard"><div class="ico">🎓</div><div><h3>BCA Student</h3><p>CT Group of Institutions, Shahpur, Jalandhar. Building toward software development.</p></div></div>
+        <div class="acard"><div class="ico">🐍</div><div><h3>Learner</h3><p>Writing Python automation scripts and learning more every day.</p></div></div>
+        <div class="acard"><div class="ico">🔐</div><div><h3>Cybersecurity, Future Goal</h3><p>Deeply interested in cybersecurity. Planning to learn ethical hacking seriously.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" data-track-section="skills">
+    <div class="eyebrow">Core Arsenal</div>
+    <h2>Skills &amp; Expertise</h2>
+    <div class="grid">
+      <div class="card fade">
+        <div class="ico">🐍</div>
+        <h3>Python</h3>
+        <p>Primary language · scripting · automation · learning more</p>
+        <div class="bar" role="img" aria-label="Python 72 percent"><i data-w="72"></i></div>
+        <span class="meta">72%</span>
+      </div>
+    </div>
+    <div class="tags fade" style="margin-top:1.4rem">
+      <span class="tag">🐍 Python</span><span class="tag">🔐 Cybersecurity (Future Goal)</span><span class="tag">🕵 Ethical Hacking (Future Goal)</span>
+    </div>
+  </section>
+
+  <section id="journey" data-track-section="education">
+    <div class="eyebrow">Mission Log</div>
+    <h2>My Journey</h2>
+    <div class="tl">
+      <div class="tl-item fade"><div class="tl-year">2022 — MARCH 31</div><div class="tl-card">
+        <h3>Secondary School Examination (Class 10)</h3>
+        <span>Bihar School Examination Board, Patna · L M High School, Kudariya Rajapatti, Saran</span>
+        <span class="marks">Hindi 74 · Sanskrit 73 · Mathematics 34 · Science 54 · Social Science 63 · English 51</span>
+        <em class="badge">Aggregate 300/500 · 1st Division</em></div></div>
+      <div class="tl-item fade"><div class="tl-year">2024 — MARCH 23</div><div class="tl-card">
+        <h3>Intermediate Annual Examination (Class 12, Science)</h3>
+        <span>Bihar School Examination Board, Patna · Ganga Singh College, Chapra, Saran</span>
+        <span class="marks">English 57 · Hindi 72 · Physics 52 · Chemistry 53 · Biology 42</span>
+        <em class="badge">Aggregate 276 · 2nd Division</em></div></div>
+      <div class="tl-item fade"><div class="tl-year">2025 — APRIL 28</div><div class="tl-card">
+        <h3>KYP Certificate, Kushal Yuva Program</h3>
+        <span>Bihar Skill Development Mission · Government of Bihar</span>
+        <span class="marks">BSCIT (IT) 70.18% · BSCLS (Language) 90.69% · BSCSS (Soft Skills) 82.05%</span>
+        <em class="badge">Cert No: 3643683125012451</em></div></div>
+      <div class="tl-item now fade"><div class="tl-year">2026 — PRESENT</div><div class="tl-card">
+        <h3>BCA + Active Skill Building</h3>
+        <span>Data Science &amp; ML Webinar · Full Stack Workshop at GUVI HCL · Prompt Engineering (Gold) · AWS Cloud Essentials (Gold) · DataOps (Gold) · Adobe GenAI (Gold) · MERN Full Stack</span>
+        <span class="marks">Building: Python projects · this portfolio</span>
+        <em class="badge">STATUS: ONLINE ⚡</em></div></div>
+    </div>
+  </section>
+
+  <section id="projects" data-track-section="projects">
+    <div class="eyebrow">Build Log</div>
+    <h2>Featured Projects</h2>
+    <div class="grid">
+            <article class="card fade">
+        <div style="display:flex;justify-content:space-between;align-items:center"><span class="meta">HTML · CSS</span><div class="ico">🌐</div></div>
+        <h3>Project Aether Portfolio</h3>
+        <p>This portfolio itself, a single-file website built with HTML, CSS and JavaScript. No frameworks, no libraries except fonts.</p>
+        <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span></div>
+        <a class="link" href="https://github.com/mshaurya878" target="_blank" rel="noopener" data-track-link="github" data-track-label="project_github">⎘ View on GitHub →</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="certs" data-track-section="certificates">
+    <div class="eyebrow">Verified Achievements</div>
+    <h2>Certifications</h2>
+    <div class="desk" id="desk">
+      <div class="card fade"><h3>🐍 Building a Chatbot Using Python</h3><p>GUVI Geek Networks · HCL · Google for Education Partner · ISO 9001/27001 Certified</p><div class="scores"><span>✓ Completed</span></div><div class="meta">10 Jun 2026 · ID: 5811n7LsI15A0q4741</div></div>
+      <div class="card fade"><h3>🤖 Data Science &amp; Machine Learning Fundamentals</h3><p>GUVI HCL · Certificate of Participation · Webinar Series</p><div class="scores"><span>✓ Participated</span></div><div class="meta">24 Apr 2026</div></div>
+      <div class="card fade"><h3>🌐 Future Ready Full Stack Developer</h3><p>GUVI HCL · Workshop Certificate of Participation</p><div class="scores"><span>✓ Participated</span></div><div class="meta">11 Jun 2026</div></div>
+      <div class="card fade"><h3>🏛 KYP Certificate, Kushal Yuva Program</h3><p>Bihar Skill Development Mission · Government of Bihar · 3 Courses</p><div class="scores"><span>BSCIT 70.18%</span><span>BSCLS 90.69%</span><span>BSCSS 82.05%</span></div><div class="meta">28 Apr 2025 · Cert No: 3643683125012451</div></div>
+      <div class="card fade"><h3>💬 Prompt Engineering and ChatGPT</h3><p>FutureSkills Prime · Nasscom · IT-ITeS SSC · Certificate of Completion</p><div class="scores"><span>✓ Completed</span><span>🥇 Gold · 88%</span></div><div class="meta">Completed 1 Oct 2026 · Assessment 9 Oct 2026 · ID: FSP/2026/10/10475588</div></div>
+      <div class="card fade"><h3>⚛ Full Stack Development with MERN</h3><p>thingQbator · Nasscom Foundation · Certificate of Excellence</p><div class="scores"><span>✓ Completed</span></div></div>
+          <div class="card fade"><h3>☁ AWS Cloud Practitioner Essentials</h3><p>FutureSkills Prime · Nasscom · IT-ITeS SSC · Assessment Certificate</p><div class="scores"><span>🥇 Gold · 100%</span></div><div class="meta">13 Oct 2026 · ID: FSP/2026/10/10482586</div></div>
+      <div class="card fade"><h3>📊 Fueling Data Intelligence in Modern DataOps</h3><p>FutureSkills Prime · Nasscom · IT-ITeS SSC · Assessment Certificate</p><div class="scores"><span>🥇 Gold · 93%</span></div><div class="meta">13 Oct 2026 · ID: FSP/2026/10/10483037</div></div>
+      <div class="card fade"><h3>🎨 Adobe's Essentials of Generative AI Content Creation</h3><p>FutureSkills Prime · Nasscom · IT-ITeS SSC · Participation + Assessment</p><div class="scores"><span>✓ Participated</span><span>🥇 Gold · 93%</span></div><div class="meta">12 Oct 2026 · ID: FSP/2026/10/10481050</div></div>
+    </div>
+  </section>
+
+  <section id="github">
+    <div class="eyebrow">Repository Intelligence</div>
+    <h2>Developer Dashboard</h2>
+    <div class="grid">
+      <div class="card fade">
+        <h3>GitHub Profile</h3>
+        <p>Code, projects and updates are on my GitHub profile.</p>
+        <a class="btn primary" style="align-self:flex-start" href="https://github.com/mshaurya878" target="_blank" rel="noopener" data-track-link="github" data-track-label="dashboard_github">⎘ github.com/mshaurya878 →</a>
+      </div>
+      <div class="card fade">
+        <h3>Language Breakdown</h3>
+        <div><div class="lang"><span>Python</span><span>100%</span></div><div class="bar"><i data-w="100"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="terminal">
+    <div class="eyebrow">Interactive Shell</div>
+    <h2>Aether Terminal</h2>
+    <div class="term fade">
+      <div class="term-h"><i></i><i></i><i></i><span>aether@shauryyan:~$</span></div>
+      <div id="out" aria-live="polite"></div>
+      <div class="term-in"><span>aether@shauryyan:~$</span><input id="cmd" autocomplete="off" spellcheck="false" placeholder="type 'help' to start..." aria-label="Terminal command"></div>
+    </div>
+    <p class="hint">💡 Try: <code>help</code> · <code>about</code> · <code>skills</code> · <code>contact</code> · <code>whoami</code></p>
+  </section>
+
+  <section id="contact" data-track-section="contact">
+    <div class="eyebrow">Open Channel</div>
+    <h2>Get In Touch</h2>
+    <div class="contact">
+      <div class="fade">
+        <b>Let's build something. Together.</b>
+        <p>Whether you want to collaborate on a Python project, discuss cybersecurity, or just say hello, my inbox is always open.</p>
+        <div class="mail" id="mail">mishrashaury556@gmail.com</div>
+        <div class="cta" style="margin-top:.8rem">
+          <a class="btn primary" href="mailto:mishrashaury556@gmail.com" data-track-link="email" data-track-label="email_me">📧 Email me</a>
+          <button class="btn" id="copy" type="button" data-track-link="email" data-track-label="copy_email">Copy email</button>
+          <a class="btn" href="https://github.com/mshaurya878" target="_blank" rel="noopener" data-track-link="github" data-track-label="contact_github">⎘ GitHub</a>
+        </div>
+      </div>
+      <div class="card fade">
+        <h3>Send a Message</h3>
+        <form id="form">
+          <label>YOUR NAME<input id="fn" required placeholder="Your name"></label>
+          <label>EMAIL ADDRESS<input id="fe" type="email" required placeholder="you@example.com"></label>
+          <label>MESSAGE<textarea id="fm" required placeholder="Let's collaborate on something exciting..."></textarea></label>
+          <button class="btn primary" type="submit" style="justify-content:center">Transmit Message ↗</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="foot-note">Thanks for stopping by. This site is hand-built with HTML, CSS and JavaScript, and it grows as I learn. If something here catches your eye, the <a href="#contact">Contact</a> section is the best way to say hello.</p>
+    <details class="privacy" id="privacy">
+      <summary>Privacy &amp; analytics</summary>
+      <p>This site works the same whether analytics is on or off. If analytics is set up, it only starts after you click Accept.</p>
+      <ul>
+        <li><b>What analytics may record (after Accept):</b> page visits, time on the page, how far you scroll (25%, 50%, 75%, 90%), which sections scroll into view, and which GitHub, email, social or demo links are clicked. Google Analytics 4 also reports general details such as device type, browser, approximate location and how you arrived. It sets first-party cookies starting with <code>_ga</code>.</li>
+        <li><b>What it does not record:</b> your name, email address, passwords, or anything you type in the contact form (that form just opens your own email app). Google signals and ad personalisation are switched off, and this site does no fingerprinting.</li>
+        <li><b>Reading:</b> a section "reached" only means it scrolled into view. It does not mean anyone read or understood it.</li>
+        <li><b>Your signals:</b> if your browser sends Do Not Track or Global Privacy Control, analytics stays off.</li>
+        <li><b>Like button:</b> in browser-only mode a flag is saved in your browser's local storage and nothing is sent anywhere. If a shared counter is enabled, one anonymous "add 1" request is sent to the hosting service (which, like any web server, can see your IP address).</li>
+      </ul>
+      <p class="privacy-status" id="analytics-status">Analytics status: checking…</p>
+      <p class="privacy-status" id="like-footnote"></p>
+      <button class="btn" id="privacy-settings" type="button" hidden>Change analytics choice</button>
+      <p>Questions or deletion requests: mishrashaury556@gmail.com</p>
+    </details>
+  </footer>
+</main>
+
+<div class="dock">
+<span class="like-note" id="like-note" role="status" aria-live="polite"></span>
+<div class="consent" id="consent" role="region" aria-label="Analytics choice" hidden>
+  <p><b>Analytics?</b> May this site use Google Analytics to count visits and see which sections get attention? It never collects your name or email, and the site works the same either way. <a href="#privacy" id="consent-privacy-link">Privacy notice</a></p>
+  <div class="cta">
+    <button class="btn primary" id="consent-accept" type="button">Accept</button>
+    <button class="btn" id="consent-decline" type="button">Decline</button>
+  </div>
+</div>
+</div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  var boot=$('boot'),fill=$('bfill'),bt=$('btext'),p=0,msgs=['INITIALIZING...','LOADING MODULES...','LINKING PYTHON CORE...','SYSTEM ONLINE'];
+  var t=setInterval(function(){
+    p+=reduce?50:7;fill.style.width=Math.min(p,100)+'%';
+    bt.textContent=msgs[Math.min(Math.floor(p/26),3)];
+    if(p>=100){clearInterval(t);boot.classList.add('done');setTimeout(function(){boot.remove()},600)}
+  },70);
+
+  var roles=['Python Learner 🐍','BCA Student 🎓','Cybersecurity Aspirant 🔐'],ri=0,ci=0,del=false,el=$('typed');
+  if(reduce){el.textContent=roles.join(' · ')}else{
+    (function tick(){
+      var r=roles[ri];
+      el.textContent=r.slice(0,del?--ci:++ci);
+      var d=del?35:75;
+      if(!del&&ci===r.length){del=true;d=1400}
+      else if(del&&ci===0){del=false;ri=(ri+1)%roles.length;d=300}
+      setTimeout(tick,d);
+    })();
+  }
+
+  addEventListener('scroll',function(){
+    var h=document.documentElement;
+    $('prog').style.width=(h.scrollTop/(h.scrollHeight-h.clientHeight||1)*100)+'%';
+  },{passive:true});
+
+  function bars(root){root.querySelectorAll('.bar i').forEach(function(b){b.style.width=b.dataset.w+'%'})}
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('in');bars(e.target);io.unobserve(e.target)}
+    })},{threshold:.15});
+    document.querySelectorAll('.fade').forEach(function(n){io.observe(n)});
+  }else{document.querySelectorAll('.fade').forEach(function(n){n.classList.add('in');bars(n)})}
+
+  var out=$('out'),cmd=$('cmd');
+  var D={
+    help:'<span class="c">Available commands:</span>\nabout · Who is Shauryyan\nskills · Technical skills\ncerts · Certifications\ncontact · Contact info\nwhoami · System identity\ngithub · GitHub profile\nprojects · Featured projects\ncyber · Cybersecurity interests\nclear · Clear terminal',
+    whoami:'<span class="g">USER:</span> Shauryyan Kumar\n<span class="g">GITHUB:</span> mshaurya878\n<span class="g">ROLE:</span> Python Learner · BCA Student\n<span class="g">COLLEGE:</span> CT Group of Institutions, Shahpur, Jalandhar\n<span class="g">STATUS:</span> <span class="c">ONLINE · Learning Every Day</span>',
+    about:'Shauryyan Kumar, BCA student at CT Group of Institutions, Shahpur, Jalandhar.\nKnows: Python\nInterested in: Cybersecurity (future goal)\nEmail: mishrashaury556@gmail.com',
+    skills:'<span class="c">SKILLS:</span>\n🐍 Python ███████░░░ 72% · scripting, automation\n🔐 Cybersecurity: future goal, deeply interested',
+    certs:'<span class="c">CERTIFICATIONS:</span>\n✅ Building a Chatbot Using Python · GUVI HCL (Jun 2026)\n✅ Data Science &amp; ML Fundamentals · GUVI HCL (Apr 2026)\n✅ Future Ready Full Stack Dev · GUVI HCL (Jun 2026)\n✅ KYP Certificate · Bihar Skill Dev Mission (Apr 2025)\n✅ Prompt Engineering &amp; ChatGPT · FutureSkills Prime (Gold 88%)\n✅ Full Stack Development with MERN · thingQbator\n✅ AWS Cloud Practitioner Essentials · FutureSkills Prime (Gold 100%)\n✅ Fueling Data Intelligence in Modern DataOps · FutureSkills Prime (Gold 93%)\n✅ Adobe Essentials of Generative AI Content Creation · FutureSkills Prime (Gold 93%)',
+    contact:'<span class="g">CONTACT:</span>\n📧 mishrashaury556@gmail.com\n⎘ github.com/mshaurya878',
+    github:'Opening GitHub profile...\n<a href="https://github.com/mshaurya878" target="_blank" rel="noopener" class="c" data-track-link="github" data-track-label="terminal_github">→ github.com/mshaurya878</a>',
+    projects:'<span class="c">PROJECTS:</span>\n🌐 Project Aether Portfolio · HTML, CSS, JS',
+    cyber:'<span class="g">CYBERSECURITY, FUTURE GOAL:</span>\nDeeply interested in cybersecurity and plans to learn ethical hacking seriously.\nCurrently focused on Python fundamentals first.'
+  };
+  function pr(h){var d=document.createElement('div');d.innerHTML=h;out.appendChild(d);out.scrollTop=out.scrollHeight}
+  pr('<span class="c">PROJECT AETHER v2.0 · SHAURYYAN KUMAR</span>');
+  pr('<span class="m">Type <span class="g">help</span> to see available commands.</span>');
+  cmd.addEventListener('keydown',function(e){
+    if(e.key!=='Enter')return;
+    var v=cmd.value.trim().toLowerCase();if(!v)return;
+    var echo=document.createElement('div');
+    echo.innerHTML='<span class="g">aether@shauryyan:~$</span> ';
+    echo.appendChild(document.createTextNode(v));
+    out.appendChild(echo);cmd.value='';
+    if(v==='clear'){out.innerHTML='';return}
+    if(Object.prototype.hasOwnProperty.call(D,v))pr(D[v]);
+    else{var r=document.createElement('div');r.className='r';r.textContent="Command not found: "+v+" · try 'help'";out.appendChild(r)}
+    out.scrollTop=out.scrollHeight;
+  });
+
+  var btn=$('copy'),mail=$('mail');
+  btn.addEventListener('click',function(){
+    var s=function(){var r=document.createRange();r.selectNodeContents(mail);var x=getSelection();x.removeAllRanges();x.addRange(r)};
+    var ok=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy email'},1800)};
+    try{navigator.clipboard.writeText(mail.textContent.trim()).then(ok,s)}catch(e){s()}
+  });
+
+  $('form').addEventListener('submit',function(e){
+    e.preventDefault();
+    var body='Name: '+$('fn').value+'\nEmail: '+$('fe').value+'\n\n'+$('fm').value;
+    location.href='mailto:mishrashaury556@gmail.com?subject='+encodeURIComponent('Portfolio message from '+$('fn').value)+'&body='+encodeURIComponent(body);
+  });
+
+  /* card spotlight */
+  document.addEventListener('pointermove',function(e){
+    var t=e.target.closest&&e.target.closest('.card,.acard,.tl-card');if(!t)return;
+    var r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px');
+  },{passive:true});
+
+  /* starfield */
+  var cv=$('stars'),cx=cv.getContext('2d'),S=[],dark=matchMedia('(prefers-color-scheme:dark)');
+  function size(){
+    cv.width=innerWidth;cv.height=innerHeight;S=[];
+    for(var i=0,n=Math.min(140,Math.floor(innerWidth*innerHeight/9000));i<n;i++)S.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.2+.3,p:Math.random()*6.28,s:Math.random()*.02+.005,v:Math.random()*.15+.03});
+  }
+  function frame(){
+    cx.clearRect(0,0,cv.width,cv.height);cx.fillStyle=dark.matches?'#ffffff':'#6d28d9';
+    S.forEach(function(o){o.p+=o.s;o.y+=reduce?0:o.v;if(o.y>cv.height)o.y=0;cx.globalAlpha=(.3+.7*Math.abs(Math.sin(o.p)))*(dark.matches?1:.5);cx.beginPath();cx.arc(o.x,o.y,o.r,0,6.283);cx.fill()});
+    if(!reduce)requestAnimationFrame(frame);
+  }
+  size();frame();addEventListener('resize',function(){size();if(reduce)frame()});
+})();
+</script>
+
+<!-- Scripts run after the page content. Order matters: config > analytics > consent > tracking > likes > certificates > menu -->
+<script>
+/*
+ * AETHER CONFIGURATION
+ * --------------------
+ * This is the only file you need to edit to connect external services.
+ * Everything here ends up in the visitor's browser, so NEVER put secrets here.
+ * (A GA4 Measurement ID and a Supabase "anon" key are public by design.)
+ */
+window.AETHER_CONFIG = {
+  analytics: {
+    // Google Analytics 4 Measurement ID, e.g. "G-ABCDE12345".
+    // Leave as "" to turn analytics off completely (the site works the same).
+    measurementId: "",
+
+    // Keep true: no analytics script is loaded until the visitor clicks Accept.
+    requireConsent: true,
+
+    // true = also print every event to the browser console (handy while testing).
+    // You can also add ?aether_debug=1 to the page URL instead.
+    debug: false
+  },
+
+  likes: {
+    // "local"    = like is stored in this browser only (works immediately, no setup)
+    // "supabase" = one shared count for all visitors (needs the setup in SETUP.md)
+    provider: "local",
+
+    supabase: {
+      url: "",              // e.g. "https://your-project.supabase.co"
+      anonKey: "",          // the PUBLIC anon key. Never use the service_role key here.
+      counterId: "portfolio" // row id used in the portfolio_likes table
+    }
+  }
+};
+</script>
+<script>
+/*
+ * Analytics core: consent state, Google Analytics 4 loader, and track().
+ * This file never touches the page UI. Other files call window.AetherAnalytics.
+ */
+(function () {
+  'use strict';
+
+  var config = (window.AETHER_CONFIG && window.AETHER_CONFIG.analytics) || {};
+  var CONSENT_KEY = 'aether_analytics_consent';
+  var MEASUREMENT_ID_PATTERN = /^G-[A-Z0-9]{4,15}$/;
+
+  var measurementId = MEASUREMENT_ID_PATTERN.test(config.measurementId || '') ? config.measurementId : '';
+  var debugEnabled = !!config.debug || /[?&]aether_debug=1/.test(location.search);
+  var changeListeners = [];
+  var scriptRequested = false;
+
+  function readStoredChoice() {
+    try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+  }
+
+  function writeStoredChoice(value) {
+    try { localStorage.setItem(CONSENT_KEY, value); } catch (e) { /* choice just won't persist */ }
+  }
+
+  // Honour browser-level opt-out signals (Do Not Track and Global Privacy Control).
+  function browserRequestsOptOut() {
+    return navigator.globalPrivacyControl === true || navigator.doNotTrack === '1';
+  }
+
+  // Returns one of: 'not-configured', 'blocked-by-browser', 'granted', 'denied', 'unset'
+  function getStatus() {
+    if (!measurementId) return 'not-configured';
+    if (browserRequestsOptOut()) return 'blocked-by-browser';
+    var stored = readStoredChoice();
+    if (stored === 'granted' || stored === 'denied') return stored;
+    return config.requireConsent === false ? 'granted' : 'unset';
+  }
+
+  function isActive() {
+    return getStatus() === 'granted';
+  }
+
+  function ensureGtagFunction() {
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== 'function') {
+      window.gtag = function () { window.dataLayer.push(arguments); };
+    }
+  }
+
+  // Adds the official gtag.js script without blocking page rendering.
+  function requestGtagScript() {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(measurementId);
+    script.onerror = function () {
+      if (debugEnabled) console.warn('[aether] gtag.js could not load (blocked or offline). The site still works.');
+    };
+    document.head.appendChild(script);
+  }
+
+  function scheduleGtagScript() {
+    var run = function () {
+      if (window.requestIdleCallback) window.requestIdleCallback(requestGtagScript, { timeout: 3000 });
+      else setTimeout(requestGtagScript, 1);
+    };
+    if (document.readyState === 'complete') run();
+    else window.addEventListener('load', run, { once: true });
+  }
+
+  function startAnalytics() {
+    if (!measurementId) return;
+    window['ga-disable-' + measurementId] = false;
+    if (scriptRequested) return; // already running, just re-enabled above
+    scriptRequested = true;
+
+    ensureGtagFunction();
+    window.gtag('js', new Date());
+    window.gtag('config', measurementId, {
+      allow_google_signals: false,               // no cross-device / demographic linking
+      allow_ad_personalization_signals: false    // no ad personalisation
+    });
+    scheduleGtagScript();
+  }
+
+  // Removes Google Analytics cookies (_ga, _ga_XXXX) on a best-effort basis.
+  function clearAnalyticsCookies() {
+    var host = location.hostname;
+    document.cookie.split(';').forEach(function (cookie) {
+      var name = cookie.split('=')[0].trim();
+      if (name.indexOf('_ga') !== 0) return;
+      var expired = '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+      document.cookie = name + expired;
+      document.cookie = name + expired + '; domain=' + host;
+      document.cookie = name + expired + '; domain=.' + host;
+    });
+  }
+
+  function stopAnalytics() {
+    if (measurementId) window['ga-disable-' + measurementId] = true;
+    clearAnalyticsCookies();
+  }
+
+  function notifyChange() {
+    changeListeners.forEach(function (listener) {
+      try { listener(getStatus()); } catch (e) { /* one bad listener must not break others */ }
+    });
+  }
+
+  function setConsent(granted) {
+    writeStoredChoice(granted ? 'granted' : 'denied');
+    if (granted && !browserRequestsOptOut()) startAnalytics();
+    else stopAnalytics();
+    notifyChange();
+  }
+
+  // Sends one event to GA4. Returns true only if it was actually handed to gtag.
+  function track(eventName, params) {
+    var status = getStatus();
+    var sent = status === 'granted' && typeof window.gtag === 'function';
+    if (debugEnabled) {
+      console.log('[aether] ' + (sent ? 'event sent' : 'event NOT sent (' + status + ')') + ':', eventName, params || {});
+    }
+    if (!sent) return false;
+    window.gtag('event', eventName, params || {});
+    return true;
+  }
+
+  function onChange(listener) {
+    changeListeners.push(listener);
+  }
+
+  window.AetherAnalytics = {
+    status: getStatus,
+    isActive: isActive,
+    setConsent: setConsent,
+    track: track,
+    onChange: onChange
+  };
+
+  if (isActive()) startAnalytics();
+})();
+</script>
+<script>
+/*
+ * Consent banner + privacy notice wiring.
+ * Only shows or hides existing markup; all consent logic lives in analytics.js.
+ */
+(function () {
+  'use strict';
+
+  var analytics = window.AetherAnalytics;
+  var banner = document.getElementById('consent');
+  var acceptButton = document.getElementById('consent-accept');
+  var declineButton = document.getElementById('consent-decline');
+  var privacyLink = document.getElementById('consent-privacy-link');
+  var settingsButton = document.getElementById('privacy-settings');
+  var statusLine = document.getElementById('analytics-status');
+  var privacyDetails = document.getElementById('privacy');
+
+  var STATUS_TEXT = {
+    'not-configured': 'Analytics is not set up on this site, so nothing is being collected.',
+    'blocked-by-browser': 'Your browser sends a Do Not Track or Global Privacy Control signal, so analytics stays off.',
+    'denied': 'Analytics is off. You can turn it on below.',
+    'granted': 'Analytics is on. You can switch it off below.',
+    'unset': 'Analytics is off until you choose.'
+  };
+
+  function render(forceBanner) {
+    var status = analytics ? analytics.status() : 'unavailable';
+    var visitorCanChoose = status === 'granted' || status === 'denied' || status === 'unset';
+
+    if (statusLine) statusLine.textContent = 'Analytics status: ' + (STATUS_TEXT[status] || 'unavailable.');
+    if (settingsButton) settingsButton.hidden = !visitorCanChoose;
+    if (banner) banner.hidden = !(visitorCanChoose && (status === 'unset' || forceBanner === true));
+  }
+
+  function choose(granted) {
+    if (analytics) analytics.setConsent(granted);
+    render(false);
+  }
+
+  if (acceptButton) acceptButton.addEventListener('click', function () { choose(true); });
+  if (declineButton) declineButton.addEventListener('click', function () { choose(false); });
+
+  if (settingsButton) {
+    settingsButton.addEventListener('click', function () {
+      render(true);
+      if (acceptButton) acceptButton.focus();
+    });
+  }
+
+  if (privacyLink && privacyDetails) {
+    privacyLink.addEventListener('click', function () { privacyDetails.open = true; });
+  }
+
+  if (analytics) analytics.onChange(function () { render(false); });
+  render(false);
+})();
+</script>
+<script>
+/*
+ * Engagement tracking: scroll depth, section reached, link clicks, likes.
+ * Sends events through window.AetherAnalytics.track(). If analytics is off,
+ * blocked or missing, every call is a harmless no-op.
+ *
+ * Privacy rule: events that happen before the visitor consents are NOT
+ * collected and NOT replayed later. A milestone is still marked as "done"
+ * for this page view, so it can never fire twice.
+ *
+ * Note: "section_reached" means the section scrolled into view. It does not
+ * mean the visitor read or understood it.
+ */
+(function () {
+  'use strict';
+
+  if (window.__aetherEngagementStarted) return; // never attach listeners twice
+  window.__aetherEngagementStarted = true;
+
+  var SCROLL_MILESTONES = [25, 50, 75, 90];
+  var reachedScrollMilestones = {};
+  var reachedSections = {};
+
+  function sendEvent(name, params) {
+    if (window.AetherAnalytics) window.AetherAnalytics.track(name, params);
+  }
+
+  // ---- Scroll depth ----
+  function getScrollPercent() {
+    var page = document.documentElement;
+    var scrollableHeight = page.scrollHeight - page.clientHeight;
+    if (scrollableHeight <= 0) return 0;
+    var scrolled = window.scrollY || page.scrollTop;
+    return Math.min(100, (scrolled / scrollableHeight) * 100);
+  }
+
+  function checkScrollMilestones() {
+    var percent = getScrollPercent();
+    SCROLL_MILESTONES.forEach(function (milestone) {
+      if (percent >= milestone && !reachedScrollMilestones[milestone]) {
+        reachedScrollMilestones[milestone] = true;
+        sendEvent('scroll_depth', { percent: milestone });
+      }
+    });
+  }
+
+  var scrollCheckQueued = false;
+  window.addEventListener('scroll', function () {
+    if (scrollCheckQueued) return;
+    scrollCheckQueued = true;
+    requestAnimationFrame(function () {
+      scrollCheckQueued = false;
+      checkScrollMilestones();
+    });
+  }, { passive: true });
+
+  // ---- Section reached ----
+  // Fires when a section's top enters the upper 60% of the screen. This works
+  // for very tall sections that never reach a "% visible" threshold on phones.
+  function watchSections() {
+    if (!('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var sectionName = entry.target.getAttribute('data-track-section');
+        observer.unobserve(entry.target);
+        if (reachedSections[sectionName]) return;
+        reachedSections[sectionName] = true;
+        sendEvent('section_reached', { section_name: sectionName });
+      });
+    }, { rootMargin: '0px 0px -40% 0px', threshold: 0 });
+
+    document.querySelectorAll('[data-track-section]').forEach(function (section) {
+      observer.observe(section);
+    });
+  }
+
+  // ---- Link clicks ----
+  // One delegated listener. Mark any link or button with
+  // data-track-link="github | email | social | live_demo" (and optional data-track-label).
+  // Only the link type, label and hostname are sent, never the full URL or email address.
+  document.addEventListener('click', function (event) {
+    var element = event.target.closest && event.target.closest('[data-track-link]');
+    if (!element) return;
+
+    var params = { link_type: element.getAttribute('data-track-link') };
+    var label = element.getAttribute('data-track-label');
+    if (label) params.link_label = label;
+
+    var href = element.getAttribute('href') || '';
+    if (/^https?:\/\//i.test(href)) {
+      try { params.link_host = new URL(href).hostname; } catch (e) { /* ignore malformed URL */ }
+    }
+    sendEvent('portfolio_link_click', params);
+  });
+
+  // ---- Likes (likes.js announces them; it knows nothing about analytics) ----
+  document.addEventListener('aether:like', function (event) {
+    var scope = event.detail && event.detail.scope;
+    sendEvent('portfolio_like', { like_scope: scope || 'unknown' });
+  });
+
+  watchSections();
+})();
+</script>
+<script>
+/*
+ * Portfolio Like button.
+ *
+ * Storage is isolated in "adapters" so the UI never changes when you switch:
+ *   - local adapter    : this browser only (works immediately)
+ *   - supabase adapter : one shared count, needs setup (see SETUP.md)
+ *
+ * Honesty rule: a like is only reported as saved to the place it was really
+ * saved. The local adapter never pretends to be a global count.
+ */
+(function () {
+  'use strict';
+
+  var config = (window.AETHER_CONFIG && window.AETHER_CONFIG.likes) || {};
+  var COOLDOWN_MS = 800;       // blocks accidental double taps
+  var NOTE_VISIBLE_MS = 4500;
+
+  function readStorage(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+
+  function writeStorage(key, value) {
+    try { localStorage.setItem(key, value); return true; } catch (e) { return false; }
+  }
+
+  // ---------- Adapter 1: this browser only ----------
+  function createLocalAdapter() {
+    var storageKey = 'aether_liked_browser';
+    var likedInMemoryOnly = false;
+
+    return {
+      scope: 'browser',
+      scopeLabel: 'this browser',
+      explanation: 'Likes are saved only in this browser. There is no public like count.',
+      hasLiked: function () { return readStorage(storageKey) === '1' || likedInMemoryOnly; },
+      loadCount: function () { return Promise.resolve(this.hasLiked() ? 1 : 0); },
+      like: function () {
+        var persisted = writeStorage(storageKey, '1');
+        if (!persisted) likedInMemoryOnly = true;
+        return Promise.resolve({ count: 1, persisted: persisted });
+      }
+    };
+  }
+
+  // ---------- Adapter 2: shared count in Supabase (plain fetch, no SDK) ----------
+  function createSupabaseAdapter(settings) {
+    var storageKey = 'aether_liked_shared';
+    var baseUrl = settings.url.replace(/\/+$/, '');
+    var counterId = settings.counterId || 'portfolio';
+    var headers = {
+      apikey: settings.anonKey,
+      Authorization: 'Bearer ' + settings.anonKey,
+      'Content-Type': 'application/json'
+    };
+
+    function requireOk(response) {
+      if (!response.ok) throw new Error('Supabase responded with HTTP ' + response.status);
+      return response.json();
+    }
+
+    return {
+      scope: 'shared',
+      scopeLabel: 'all visitors',
+      explanation: 'The like count is shared by all visitors. Whether you already liked is remembered in this browser.',
+      hasLiked: function () { return readStorage(storageKey) === '1'; },
+      loadCount: function () {
+        var url = baseUrl + '/rest/v1/portfolio_likes?select=total&id=eq.' + encodeURIComponent(counterId);
+        return fetch(url, { headers: headers }).then(requireOk).then(function (rows) {
+          var total = rows && rows[0] && Number(rows[0].total);
+          if (!isFinite(total)) throw new Error('Like counter row not found');
+          return total;
+        });
+      },
+      like: function () {
+        var url = baseUrl + '/rest/v1/rpc/increment_portfolio_likes';
+        return fetch(url, { method: 'POST', headers: headers, body: JSON.stringify({ counter_id: counterId }) })
+          .then(requireOk)
+          .then(function (total) {
+            total = Number(total);
+            if (!isFinite(total)) throw new Error('Unexpected response from like counter');
+            writeStorage(storageKey, '1'); // remember on this device so the button is not offered again
+            return { count: total, persisted: true };
+          });
+      }
+    };
+  }
+
+  function chooseAdapter() {
+    var settings = config.supabase || {};
+    if (config.provider === 'supabase') {
+      if (settings.url && settings.anonKey && /^https:\/\//.test(settings.url)) {
+        return createSupabaseAdapter(settings);
+      }
+      console.warn('[aether] likes.provider is "supabase" but url/anonKey are missing. Using browser-only likes.');
+    }
+    return createLocalAdapter();
+  }
+
+  // ---------- UI ----------
+  var button = document.getElementById('like-btn');
+  if (!button) return; // widget not on this page
+
+  var labelEl = document.getElementById('like-label');
+  var countEl = document.getElementById('like-count');
+  var scopeEl = document.getElementById('like-scope');
+  var noteEl = document.getElementById('like-note');
+  var footnoteEl = document.getElementById('like-footnote');
+
+  var adapter = chooseAdapter();
+  var liked = adapter.hasLiked();
+  var count = null;       // null = unknown (not loaded or unavailable)
+  var requestInFlight = false; // waiting for storage/network: button looks busy
+  var cooldownActive = false;  // short lock after a click: ignores accidental repeats
+  var noteTimer = null;
+
+  function render() {
+    button.classList.toggle('liked', liked);
+    button.classList.toggle('busy', requestInFlight);
+    button.setAttribute('aria-pressed', liked ? 'true' : 'false');
+    button.title = adapter.explanation;
+    labelEl.textContent = liked ? 'Liked' : 'Like';
+    countEl.textContent = count === null ? '–' : String(count);
+    scopeEl.textContent = adapter.scopeLabel;
+    if (footnoteEl) footnoteEl.textContent = adapter.explanation;
+  }
+
+  function showNote(message, isError) {
+    noteEl.textContent = message;
+    noteEl.classList.toggle('error', !!isError);
+    noteEl.classList.add('show');
+    clearTimeout(noteTimer);
+    noteTimer = setTimeout(function () { noteEl.classList.remove('show'); }, NOTE_VISIBLE_MS);
+  }
+
+  function playLikeAnimation() {
+    button.classList.remove('pop');
+    void button.offsetWidth; // restart the CSS animation
+    button.classList.add('pop');
+    setTimeout(function () { button.classList.remove('pop'); }, 700);
+  }
+
+  function handleLikeClick() {
+    if (requestInFlight || cooldownActive) return;
+    if (liked) {
+      showNote('You already liked this. Thank you!');
+      return;
+    }
+
+    requestInFlight = true;
+    cooldownActive = true;
+    render();
+
+    // Success and failure are handled separately so a UI hiccup can never
+    // be reported to the visitor as "your like was not saved".
+    adapter.like().then(function (result) {
+      requestInFlight = false;
+      liked = true;
+      count = result.count;
+      render(); // update the heart and counter immediately
+      playLikeAnimation();
+      if (!result.persisted) {
+        showNote('Your browser blocked storage, so this like was not saved.', true);
+      } else if (adapter.scope === 'shared') {
+        showNote('Thanks! Your like was added to the shared count.');
+      } else {
+        showNote('Thanks! Saved in this browser only. It is not a public count.');
+      }
+      document.dispatchEvent(new CustomEvent('aether:like', { detail: { scope: adapter.scope } }));
+    }, function () {
+      requestInFlight = false;
+      render();
+      showNote('Could not reach the shared counter, so your like was NOT saved. Please try again later.', true);
+    }).then(function () {
+      setTimeout(function () { cooldownActive = false; }, COOLDOWN_MS);
+    });
+  }
+
+  button.addEventListener('click', handleLikeClick);
+
+  render();
+  adapter.loadCount().then(function (total) {
+    count = total;
+    render();
+  }).catch(function () {
+    count = null;
+    render();
+    if (footnoteEl) footnoteEl.textContent = 'The shared like count is unavailable right now.';
+  });
+})();
+</script>
+<script>
+/*
+ * Side menu: opens the navigation drawer from the menu button.
+ * Closes with the X button, the dark backdrop, the Escape key, or by choosing a link.
+ */
+(function () {
+  'use strict';
+
+  var openButton = document.getElementById('menu-btn');
+  var drawer = document.getElementById('drawer');
+  var scrim = document.getElementById('drawer-scrim');
+  var closeButton = document.getElementById('drawer-close');
+  if (!openButton || !drawer || !scrim || !closeButton) return;
+
+  var isOpen = false;
+
+  function setOpen(open, returnFocus) {
+    if (open === isOpen) return;
+    isOpen = open;
+    drawer.classList.toggle('open', open);
+    scrim.classList.toggle('open', open);
+    drawer.setAttribute('aria-hidden', open ? 'false' : 'true');
+    openButton.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+    if (open) closeButton.focus();
+    else if (returnFocus) openButton.focus();
+  }
+
+  // Keep Tab inside the open drawer.
+  function keepFocusInside(event) {
+    var focusable = drawer.querySelectorAll('a[href], button');
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+  }
+
+  openButton.addEventListener('click', function () { setOpen(!isOpen, true); });
+  closeButton.addEventListener('click', function () { setOpen(false, true); });
+  scrim.addEventListener('click', function () { setOpen(false, true); });
+
+  // Choosing a link scrolls to that section, so focus stays where the page goes.
+  drawer.addEventListener('click', function (event) {
+    if (event.target.closest && event.target.closest('a')) setOpen(false, false);
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (!isOpen) return;
+    if (event.key === 'Escape') setOpen(false, true);
+    else if (event.key === 'Tab') keepFocusInside(event);
+  });
+})();
+</script>
+</body>
+</html>
